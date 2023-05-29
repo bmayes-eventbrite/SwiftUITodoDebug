@@ -8,13 +8,18 @@
 
 import Foundation
 
-@propertyDelegate
+@propertyWrapper
 struct UserDefaultValue<Value: Codable> {
 
     let key: String
     let defaultValue: Value
+    
+    init(key: String, defaultValue: Value) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
 
-    var value: Value {
+    var wrappedValue: Value {
         get {
             let data = UserDefaults.standard.data(forKey: key)
             let value = data.flatMap { try? JSONDecoder().decode(Value.self, from: $0) }

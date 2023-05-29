@@ -14,7 +14,7 @@ private let defaultTasks: [Task] = [
   Task(title: "Watch WWDC19 Keynote 🎉", isDone: true),
 ]
 
-final class UserData: BindableObject {
+final class UserData: ObservableObject {
   let didChange = PassthroughSubject<UserData, Never>()
 
   @UserDefaultValue(key: "Tasks", defaultValue: defaultTasks)
